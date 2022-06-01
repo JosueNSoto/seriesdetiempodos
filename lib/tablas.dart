@@ -72,7 +72,9 @@ class _tablasState extends State<tablas> {
                 margin: EdgeInsets.only(bottom: 10, left: 20, right: 20),
                 child: Center(
                   child: Table(
-                    border: TableBorder.all(),
+                    border: TableBorder.symmetric(
+                      inside: BorderSide(width: 1, color: Colors.blue),
+                    ),
                     children: [
                       TableRow(
                         children: [
