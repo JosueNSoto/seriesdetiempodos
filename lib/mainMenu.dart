@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'tablas.dart';
+import 'package:flutter/services.dart';
+import 'Operaciones/Operaciones.dart';
 
 class mainMenu extends StatefulWidget {
   @override
@@ -7,6 +9,13 @@ class mainMenu extends StatefulWidget {
 }
 
 class _mainMenuState extends State<mainMenu> {
+  //Variables ingresadas por el usuario
+  final anoInicial = TextEditingController();
+  final demandaInicial = TextEditingController();
+
+  String anoIni = '';
+  String demIni = '';
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -23,16 +32,24 @@ class _mainMenuState extends State<mainMenu> {
               SizedBox(height: 20),
               Text("Coloque la informacion solicitada"),
               SizedBox(height: 10),
-              Text("Ingrese el ano de inicio"),
+              Text("Ingrese el año de inicio"),
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 200),
                 child: TextFormField(
+                  controller: anoInicial,
                   keyboardType: TextInputType.number,
-                  validator: (value) {
-                    //final intNumber = int.tryParse(value);
+                  validator: (String? intNumber) {
+                    final intNumber = int.tryParse("0");
+                    if (intNumber != null && intNumber <= 4) {
+                      return "no digas mamadas";
+                    }
+                    return "Ingrese un número";
                   },
+                  inputFormatters: <TextInputFormatter>[
+                    FilteringTextInputFormatter.digitsOnly
+                  ],
                   decoration: InputDecoration(
-                    hintText: "2012",
+                    hintText: "Ejemplo: 2012",
                     hintStyle: TextStyle(
                       fontSize: 14,
                     ),
@@ -40,12 +57,24 @@ class _mainMenuState extends State<mainMenu> {
                 ),
               ),
               SizedBox(height: 10),
-              Text("Ingrese la demanda"),
+              Text("Ingrese la demanda inicial"),
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 200),
                 child: TextFormField(
+                  controller: demandaInicial,
+                  keyboardType: TextInputType.numberWithOptions(decimal: true),
+                  validator: (value) {
+                    final intNumber = int.tryParse("0");
+                    if (intNumber != null && intNumber <= 7) {
+                      return "no digas mamadas";
+                    }
+                    return "Ingrese un número";
+                  },
+                  inputFormatters: <TextInputFormatter>[
+                    FilteringTextInputFormatter.digitsOnly
+                  ],
                   decoration: InputDecoration(
-                    hintText: "7000",
+                    hintText: "Ejempo: 7000",
                     hintStyle: TextStyle(
                       fontSize: 14,
                     ),
@@ -61,6 +90,16 @@ class _mainMenuState extends State<mainMenu> {
                       builder: (context) => tablas(),
                     ),
                   );
+                  //Pasar valores a variables
+                  anoIni = anoInicial.text;
+                  demIni = demandaInicial.text;
+                  //Pasar valores a tipo double
+                  double numAnoIni = double.parse(anoIni);
+                  double numDemIni = double.parse(demIni);
+                  //double resultado = numAnoIni + numDemIni;
+                  //print(resultado);
+                  //Pasar valores a variables para utilizar después :P
+                  guardarNum(numAnoIni, numDemIni);
                 },
                 child: Text("Generar Series de Tiempo"),
               ),
