@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class tablas extends StatefulWidget {
   @override
@@ -6,6 +7,10 @@ class tablas extends StatefulWidget {
 }
 
 class _tablasState extends State<tablas> {
+  final sigDemanda = TextEditingController();
+
+  String sigDemandaNum = '';
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -49,6 +54,18 @@ class _tablasState extends State<tablas> {
                   children: [
                     SizedBox(height: 10),
                     TextFormField(
+                      controller: sigDemanda,
+                      keyboardType: TextInputType.number,
+                      validator: (value) {
+                        final valueDemanda = int.tryParse('0');
+                        if (valueDemanda != null && valueDemanda <= 4) {
+                          return "no digas mamadas";
+                        }
+                        return "Ingrese un número";
+                      },
+                      inputFormatters: <TextInputFormatter>[
+                        FilteringTextInputFormatter.digitsOnly
+                      ],
                       decoration: InputDecoration(
                         hintText: "Ejemplo: 7500",
                         hintStyle: TextStyle(
@@ -63,6 +80,11 @@ class _tablasState extends State<tablas> {
                 child: ElevatedButton(
                   onPressed: () {
                     print("Ejecutado con éxito");
+                    //Pasar valores a variabkles
+                    sigDemandaNum = sigDemanda.text;
+                    //Pasar valores a tipo double
+                    double numDemanda = double.parse(sigDemandaNum);
+                    print(numDemanda);
                   },
                   child: Text("Agregar demanda"),
                 ),
@@ -88,6 +110,15 @@ class _tablasState extends State<tablas> {
                       TableRow(
                         children: [
                           Text("2021", textAlign: TextAlign.center),
+                          Text("7000", textAlign: TextAlign.center),
+                          Text("x", textAlign: TextAlign.center),
+                          Text("xy", textAlign: TextAlign.center),
+                          Text("χ²", textAlign: TextAlign.center),
+                        ],
+                      ),
+                      TableRow(
+                        children: [
+                          Text("2022", textAlign: TextAlign.center),
                           Text("7000", textAlign: TextAlign.center),
                           Text("x", textAlign: TextAlign.center),
                           Text("xy", textAlign: TextAlign.center),

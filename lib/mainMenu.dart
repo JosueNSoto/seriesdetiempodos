@@ -38,7 +38,7 @@ class _mainMenuState extends State<mainMenu> {
                 child: TextFormField(
                   controller: anoInicial,
                   keyboardType: TextInputType.number,
-                  validator: (String? intNumber) {
+                  validator: (value) {
                     final intNumber = int.tryParse("0");
                     if (intNumber != null && intNumber <= 4) {
                       return "no digas mamadas";
