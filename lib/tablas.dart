@@ -16,7 +16,7 @@ class _tablasState extends State<tablas> {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
             border: Border.all(
-              color: Color.fromARGB(255, 29, 130, 161),
+              //color: Color.fromARGB(255, 29, 130, 161),
             ),
           ),
           child: Column(
