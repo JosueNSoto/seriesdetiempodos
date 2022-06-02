@@ -4,9 +4,10 @@ contadorYear(double anoOrigen) {
   double anoProm = 0; //Colocar un array y dividir entre el número de años
 
   anoActual = anoActual + 1;
-  print("anoActual");
+  //print("anoActual");
 }
 
 guardarNum(double anoNum, double demandaNum) {
-  print(" $anoNum and $demandaNum"); //Comprobar que capta y guarda valores
+  print("Tenemos año $anoNum y $demandaNum de demanda");
+  //return guardarNum(anoNum, demandaNum); //Comprobar que capta y guarda valores
 }

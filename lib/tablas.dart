@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:seriesdetiempodos/Operaciones/Operaciones.dart';
 
 class tablas extends StatefulWidget {
+  final double anioText = 0;
+
+  //acá se guardan los datos
+  double anoNum = 0;
+  double demandaNum = 0;
+
+  //tablas(this.anoNum, this.demandaNum);
+
   @override
   State<tablas> createState() => _tablasState();
 }
@@ -9,7 +18,7 @@ class tablas extends StatefulWidget {
 class _tablasState extends State<tablas> {
   final sigDemanda = TextEditingController();
 
-  String sigDemandaNum = '';
+  String sigDemandaNum = "";
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +30,7 @@ class _tablasState extends State<tablas> {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
             border: Border.all(
-              //color: Color.fromARGB(255, 29, 130, 161),
+              color: Color.fromARGB(255, 29, 130, 161),
             ),
           ),
           child: Column(
@@ -79,12 +88,16 @@ class _tablasState extends State<tablas> {
               Container(
                 child: ElevatedButton(
                   onPressed: () {
-                    print("Ejecutado con éxito");
                     //Pasar valores a variabkles
                     sigDemandaNum = sigDemanda.text;
                     //Pasar valores a tipo double
                     double numDemanda = double.parse(sigDemandaNum);
                     print(numDemanda);
+                    double numAnoIni = widget.anoNum;
+                    double numDemIni = widget.demandaNum;
+                    //guardarNum(numAnoIni, numDemIni);
+
+                    //print(widget.anioText);
                   },
                   child: Text("Agregar demanda"),
                 ),
@@ -119,7 +132,8 @@ class _tablasState extends State<tablas> {
                       TableRow(
                         children: [
                           Text("2022", textAlign: TextAlign.center),
-                          Text("7000", textAlign: TextAlign.center),
+                          Text("$widget.numDemanda",
+                              textAlign: TextAlign.center),
                           Text("x", textAlign: TextAlign.center),
                           Text("xy", textAlign: TextAlign.center),
                           Text("χ²", textAlign: TextAlign.center),
@@ -127,6 +141,15 @@ class _tablasState extends State<tablas> {
                       ),
                     ],
                   ),
+                ),
+              ),
+              Container(
+                child: Column(
+                  children: [
+                    Text("El 'año promedio' es: "),
+                    Text("La suma de 'xy' es: "),
+                    Text("La suma de 'χ²' es: "),
+                  ],
                 ),
               ),
             ],

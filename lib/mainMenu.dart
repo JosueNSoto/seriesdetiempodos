@@ -84,12 +84,6 @@ class _mainMenuState extends State<mainMenu> {
               SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => tablas(),
-                    ),
-                  );
                   //Pasar valores a variables
                   anoIni = anoInicial.text;
                   demIni = demandaInicial.text;
@@ -100,6 +94,12 @@ class _mainMenuState extends State<mainMenu> {
                   //print(resultado);
                   //Pasar valores a variables para utilizar después :P
                   guardarNum(numAnoIni, numDemIni);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => tablas(),
+                    ),
+                  );
                 },
                 child: Text("Generar Series de Tiempo"),
               ),
